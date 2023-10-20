@@ -21,7 +21,11 @@ for item in ./*; do
     cp -r "$item" "$destination_directory"
   fi
 done
-
+for hidden_item in .[^.]*; do
+  if [ -f "$hidden_item" ]; then
+    cp "$hidden_item" "$destination_directory"
+  fi
+done
 if [ $? -eq 0 ]; then
   echo "Files copied successfully."
 else
