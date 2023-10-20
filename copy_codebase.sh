@@ -3,14 +3,14 @@ echo "Copying to destination directory $destination_directory"
 if [ ! -d "$destination_directory" ]; then
   echo "directory does not exist: $destination_directory"
   sleep 2
+  exit 1
 fi
-# add your exclusions hereeee below
-exclude_list=("copy_base.sh" "node_modules" ".git" "dist" ".vscode") 
 
 for item in ./*; do
   item_name=$(basename "$item")
   exclude=false
-  for excluded_item in "copy_base.sh" "node_modules" ".git" "dist" ".vscode"; do
+  # add your exclusions hereeee below
+  for excluded_item in "copy_codebase.sh" "node_modules" ".git" "dist" ".vscode"; do
     if [ "$item_name" = "$excluded_item" ]; then
       exclude=true
       break
